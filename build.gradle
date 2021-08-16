@@ -1,0 +1,85 @@
+// 나머지 스크릅티를 빌드하는 과정에서 필요한 외부 라이브러리를 classpath에 추가
+buildscript {
+	ext {
+		springBootVersion = '2.5.3'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+// root, sub project 모두 적용되는 빌드 스크립트
+allprojects {
+	group = 'com.tcc'
+	version = '0.0.1-SNAPSHOT'
+}
+
+// sub project에만 적용되는 빌드 스크립트 기준 작성
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	sourceCompatibility = '1.8'
+
+	repositories {
+		mavenCentral()
+	}
+
+	//자식 프로젝트의 src, resource 디렉토리 생성
+	task initSourceFolders {
+		sourceSets*.java.srcDirs*.each {
+			if (!it.exists()) it.mkdirs()
+		}
+		sourceSets*.resources.srcDirs*.each {
+			if (!it.exists()) it.mkdirs()
+		}
+	}
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation 'org.springframework.security:spring-security-test'
+	}
+
+}
+
+/*
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.citizen'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+*/

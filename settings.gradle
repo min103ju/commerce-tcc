@@ -1,0 +1,4 @@
+rootProject.name = 'commerce'
+include 'micro-order-service'
+include 'micro-stock-service'
+include 'micro-payment-service'
