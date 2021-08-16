@@ -25,6 +25,12 @@ annotationProcessor 'org.projectlombok:lombok'
 runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 testImplementation 'org.springframework.boot:spring-boot-starter-test'
 ```
+
+### Server Port
+1. OrderService - 9001
+1. StockService - 9002
+1. PaymentService - 9003 
+
 ## :pushpin: 기능 요구사항
 1. Order Service는 제품 주문에 대한 비즈니스를 담고 있다.
 2. 주문 시 Payment(결제)와 Stock(재고) 차감을 진행한다.

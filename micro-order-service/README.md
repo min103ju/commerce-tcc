@@ -17,6 +17,9 @@ Commerce 서비스 중 주문 서비스.
     7. modified-at   
 
 ## :pencil2: Getting Started
+### Order Service 설정 정보
+1. Port : 9001
+
 ### Order Service 실행
 ```
 ./gradlew :micro-order-service:bootRun
