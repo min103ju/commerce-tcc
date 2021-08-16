@@ -1,7 +1,7 @@
 ![version badge](https://img.shields.io/badge/version-0.0.1-blue)
 ![build badge](https://img.shields.io/badge/build-passing-brightgreen)
 ![coverage badge](https://img.shields.io/badge/coverage-0%25-lightgrey)
-# :blush: TCC MSA 주문 서비스 개발
+# :blush: Commerce MSA 주문 서비스 개발 (TCC)
 Order Service, Payment Service, Stock Service 
 총 3개의 Micro Service로 구성.
 TCC를 위한 MSA이기 때문에 Rest API로 TCC만을 위한 Repository.

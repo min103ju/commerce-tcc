@@ -1,0 +1,15 @@
+
+// TODO - Spring boot는 jar를 jarLauncher를 이용하여 빌드하는데, 일반 jar와 구조가 다르다.
+// TODO - executable library로 빌드하는 것 같다. -> spring-boot-jar 안에 dependencies로 설정되는 것 같다.
+// TODO - 따라서, 일반 jar로 build하기 위해 아래의 코드를 넣어준다.
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    runtimeOnly 'com.h2database:h2'
+}
