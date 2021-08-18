@@ -1,7 +1,11 @@
 package citizen.order.domain.order;
 
+import citizen.order.adapter.link.RestBody;
+import citizen.order.constants.RequestType;
 import citizen.order.constants.StatusEnum;
 import citizen.order.domain.BaseTimeEntity;
+import java.util.HashMap;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,6 +40,23 @@ public class Order extends BaseTimeEntity {
 
     public static Order of(String productId, Integer quantity, Integer amount) {
         return new Order(productId, quantity, amount);
+    }
+
+    public RestBody toStockRestBody() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderId", this.orderId);
+        map.put("productId", this.productId);
+        map.put("quantity", this.quantity);
+        map.put("requestType", RequestType.REDUCE);
+        return new RestBody(map);
+    }
+
+    public RestBody toPaymentRestBody() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderId", this.orderId);
+        map.put("amount", this.amount);
+        map.put("requestType", RequestType.PAYMENT);
+        return new RestBody(map);
     }
 
 
